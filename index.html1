@@ -1,0 +1,9 @@
+#!/bin/bash
+sudo yum update htppd -y
+sudo yum install httpd -y
+sudo systemctl start htppd
+sudo systemctl status htppd
+sudo systemctl enable htppd
+sudo index.html/var/www/html/index.html1
+sudo systemctl restart httpd
+
