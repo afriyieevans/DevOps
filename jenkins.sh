@@ -32,7 +32,7 @@ sudo yum install git -y
 sudo yum install docker -y
 sudo systemctl start docker
 sudo systemctl enable docker
-sudo systemctl status docker
+# sudo systemctl status docker
 sudo usermod -aG docker ec2-user
 sudo usermod -aG docker jenkins
 sudo systemctl restart docker
