@@ -1,45 +1,70 @@
-#!/bin/bash
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apology to Sukandi</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
 
-# Check if the script is being run with root privileges
-if [ "$(id -u)" -ne 0 ]; then
-    echo "Please run this script with sudo or as root."
-    exit 1
-fi
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
 
-# Install Jenkins
-sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
-sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
-sudo yum install jenkins -y
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-# Start Jenkins service
-systemctl start jenkins
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Apology Letter to Sukandi</h1>
+    </header>
+    <main>
+        <p>Dear Sukandi,</p>
 
-# Enable Jenkins service to start on boot
-systemctl enable jenkins
+        <p>I hope this message finds you in good health and spirits. I am writing to extend my sincerest apologies for [briefly specify the reason for the apology, e.g., missing a deadline, any mistake, or any issue].</p>
 
-# Install Java 17
-sudo yum install -y java-17
+        <p>I deeply regret any inconvenience or frustration my actions may have caused. I understand the importance of our work, and I want to assure you that I take full responsibility for the oversight.</p>
 
-# Give sudo powers without password
-chmod 660 /etc/sudoers.d/90-cloud-init-users
-echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/90-cloud-init-users
-chmod 440 /etc/sudoers.d/90-cloud-init-users
+        <p>I have taken immediate steps to rectify the situation and ensure that such an oversight does not occur in the future. Your guidance and leadership mean a lot to me, and I am committed to learning from this experience to improve my performance.</p>
 
-# Installing git
-sudo yum install git -y
+        <p>I value our professional relationship and the work we do together. I am dedicated to maintaining a high standard of professionalism and excellence in our collaborative efforts.</p>
 
-# Configuring docker
-sudo yum install docker -y
-sudo systemctl start docker
-sudo systemctl enable docker
-# sudo systemctl status docker
-sudo usermod -aG docker ec2-user
-sudo usermod -aG docker jenkins
-sudo systemctl restart docker
+        <p>If there is anything specific you would like me to do to rectify the situation, please let me know. I am open to any suggestions and will make every effort to address any concerns.</p>
 
-# Obtaining jenkins passwd
-sleep 2
-echo  "USE THIS SECRETE PASSWD TO CONFIGURE JENKINS"
-sleep 2
-cat /var/lib/jenkins/secrets/initialAdminPassword
+        <p>Once again, I apologize for any inconvenience caused, and I appreciate your understanding in this matter. Thank you for your time and consideration.</p>
+
+        <p>Sincerely,<br>
+        Evans<br>
+        [Your Position]</p>
+    </main>
+    <footer>
+        <p>&copy; 2024 Apology Letter. All rights reserved.</p>
+    </footer>
+</body>
+</html>
 
