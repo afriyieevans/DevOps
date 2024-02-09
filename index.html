@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canada Trust Bank - Visitor Counter</title>
+    <title>The Ecosystem - Understanding Nature's Balance</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #e6ffe6; /* Green background */
+            background-color: #f8f8f8;
+            color: #333;
         }
         header {
-            background-color: #009933; /* Dark green header */
+            background-color: #4CAF50; /* Green header */
             color: #fff;
             text-align: center;
             padding: 20px 0;
         }
-        h1 {
+        h1, h2 {
             margin-bottom: 20px;
         }
         .container {
@@ -31,64 +32,44 @@
         p {
             margin-bottom: 20px;
         }
-        input[type="text"],
-        input[type="password"],
-        button {
-            padding: 10px;
-            margin-bottom: 10px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: #009933; /* Dark green button */
+        footer {
+            background-color: #4CAF50; /* Green footer */
             color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #007a29; /* Light green button on hover */
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Canada Trust Bank - Visitor Counter</h1>
+        <h1>The Ecosystem</h1>
+        <h2>Understanding Nature's Balance</h2>
     </header>
     <div class="container">
-        <form id="login-form">
-            <input type="text" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-        <p id="visitor-count">Number of visitors today: <span id="count">0</span></p>
+        <h2>Aquatic Kingdom: Exploring Water-Based Ecosystems</h2>
+        <p>The aquatic kingdom comprises a diverse array of ecosystems that are predominantly water-based. These ecosystems play a crucial role in sustaining life on Earth and are home to a rich variety of species.</p>
+        <h3>Types of Aquatic Ecosystems:</h3>
+        <ul>
+            <li><strong>Freshwater Ecosystems:</strong> Includes rivers, lakes, ponds, wetlands, and streams. These ecosystems are characterized by low salinity and support a wide range of plants and animals adapted to freshwater habitats.</li>
+            <li><strong>Marine Ecosystems:</strong> Encompasses oceans, seas, estuaries, and coral reefs. Marine ecosystems cover the majority of the Earth's surface and are teeming with life, from microscopic plankton to massive whales.</li>
+        </ul>
+        <h3>Key Features and Components:</h3>
+        <ul>
+            <li><strong>Producers:</strong> Phytoplankton, algae, and aquatic plants are primary producers that form the base of the aquatic food chain. They use sunlight and nutrients to produce food through photosynthesis.</li>
+            <li><strong>Consumers:</strong> Zooplankton, fish, crustaceans, mollusks, marine mammals, and seabirds are consumers that feed on producers or other consumers, forming complex food webs.</li>
+            <li><strong>Decomposers:</strong> Bacteria, fungi, and other decomposers break down organic matter in aquatic ecosystems, recycling nutrients back into the ecosystem and supporting the growth of plants and algae.</li>
+        </ul>
+        <h3>Importance and Threats:</h3>
+        <p>Aquatic ecosystems provide essential services such as oxygen production, climate regulation, nutrient cycling, and habitat provision. However, they face significant threats from pollution, overfishing, habitat destruction, and climate change.</p>
+        <h3>Conservation Efforts:</h3>
+        <p>Efforts to conserve aquatic ecosystems include establishing marine protected areas, implementing sustainable fisheries management practices, reducing pollution, and mitigating climate change impacts.</p>
     </div>
-
-    <script>
-        // Simulated login functionality
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-            // Simulate login process (replace with actual authentication)
-            if (email === 'admin@example.com' && password === 'password') {
-                alert('Login successful!');
-            } else {
-                alert('Invalid email or password. Please try again.');
-            }
-        });
-
-        // Simulated visitor count
-        var count = localStorage.getItem('visitorCount') || 0;
-        document.getElementById('count').textContent = count;
-
-        // Update visitor count
-        function updateVisitorCount() {
-            count++;
-            localStorage.setItem('visitorCount', count);
-            document.getElementById('count').textContent = count;
-        }
-    </script>
+    <footer>
+        &copy; 2023 The Ecosystem. All rights reserved.
+    </footer>
 </body>
 </html>
 
