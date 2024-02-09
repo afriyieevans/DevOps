@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evadoma Cold Store</title>
+    <title>Canada Trust Bank - Visitor Counter</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #e6ffe6; /* Green background */
         }
         header {
-            background-color: #007bff;
+            background-color: #009933; /* Dark green header */
             color: #fff;
             text-align: center;
             padding: 20px 0;
@@ -24,37 +24,71 @@
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: #fff; /* White container background */
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         p {
             margin-bottom: 20px;
         }
-        footer {
-            background-color: #007bff;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
+        input[type="text"],
+        input[type="password"],
+        button {
+            padding: 10px;
+            margin-bottom: 10px;
             width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #009933; /* Dark green button */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #007a29; /* Light green button on hover */
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to Evadoma Cold Store</h1>
+        <h1>Canada Trust Bank - Visitor Counter</h1>
     </header>
     <div class="container">
-        <p>Welcome to Evadoma Cold Store, your one-stop solution for all your cold storage needs.</p>
-        <p>Contact us for more information:</p>
-        <p>Email: info@evadomacoldstore.com</p>
-        <p>Phone: +1234567890</p>
+        <form id="login-form">
+            <input type="text" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p id="visitor-count">Number of visitors today: <span id="count">0</span></p>
     </div>
-    <footer>
-        &copy; 2023 Evadoma Cold Store. All rights reserved.
-    </footer>
+
+    <script>
+        // Simulated login functionality
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            // Simulate login process (replace with actual authentication)
+            if (email === 'admin@example.com' && password === 'password') {
+                alert('Login successful!');
+            } else {
+                alert('Invalid email or password. Please try again.');
+            }
+        });
+
+        // Simulated visitor count
+        var count = localStorage.getItem('visitorCount') || 0;
+        document.getElementById('count').textContent = count;
+
+        // Update visitor count
+        function updateVisitorCount() {
+            count++;
+            localStorage.setItem('visitorCount', count);
+            document.getElementById('count').textContent = count;
+        }
+    </script>
 </body>
 </html>
 
