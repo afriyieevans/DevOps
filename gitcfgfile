@@ -1,0 +1,23 @@
+---
+- name: Install and Configure Git
+  hosts: jenkins
+  become: true
+
+  tasks:
+    - name: Install Git
+      package:
+        name: git
+        state: present
+      become: yes
+
+    - name: Set Git global configuration - user.name
+      git_config:
+        name: user.name
+        value: "ezyempire"
+      become: yes
+
+    - name: Set Git global configuration - user.email
+      git_config:
+        name: user.email
+        value: "ezyempire2285@gmail.com"
+      become: yes

@@ -1,0 +1,42 @@
+---
+- name: Install Docker
+  hosts: jenkins
+  become: true
+
+  tasks:
+    - name: Install required packages
+      package:
+        name: 
+          - yum-utils
+          - device-mapper-persistent-data
+          - lvm2
+        state: present
+      when: ansible_os_family == 'RedHat'
+
+    - name: Add Docker repository
+      yum_repository:
+        name: docker-ce
+        description: Docker CE Stable - $basearch
+        baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+        gpgkey: https://download.docker.com/linux/centos/gpg
+      when: ansible_distribution == 'CentOS'
+
+    - name: Install Docker
+      package:
+        name: docker-ce
+        state: present
+      when: ansible_distribution == 'CentOS'
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+      when: ansible_distribution == 'CentOS'
+
+    - name: Add user to docker group
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+      when: ansible_distribution == 'CentOS'

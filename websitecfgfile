@@ -1,0 +1,30 @@
+---
+- name: Deploy Website with History of Ghana
+  hosts: jenkins
+  become: yes
+
+  tasks:
+    - name: Ensure Apache is installed
+      package:
+        name: httpd
+        state: present
+
+    - name: Create HTML directory
+      file:
+        path: /var/www/html
+        state: directory
+
+    - name: Create index.html with the history of Ghana
+      copy:
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>History of Ghana</title>
+          </head>
+          <body>
+            <h1>History of Ghana</h1>
+            <p>Put your historical content about Ghana here.</p>
+          </body>
+          </html>
+        dest: /var/www/html/index.html

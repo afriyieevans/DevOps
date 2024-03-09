@@ -1,0 +1,49 @@
+- name: Install and Configure Jenkins
+  hosts: jenkins
+  become: true
+
+  tasks:
+    - name: Install Java
+      yum:
+        name: java-17
+        state: present
+
+    - name: Add Jenkins repository key
+      rpm_key:
+        key: https://pkg.jenkins.io/redhat/jenkins.io.key
+        state: present
+
+    - name: Add Jenkins repository
+      yum_repository:
+        name: jenkins
+        description: Jenkins Official Repository
+        baseurl: http://pkg.jenkins.io/redhat-stable
+        gpgcheck: yes
+        state: present
+
+    - name: Import GPG key for Jenkins
+      command: sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io-2023.key
+
+    - name: Install Jenkins
+      yum:
+        name: jenkins
+        state: present
+
+    - name: Start Jenkins service
+      service:
+        name: jenkins
+        state: started
+        enabled: yes
+
+    - name: Wait for Jenkins to start
+      wait_for:
+        port: 8080
+        timeout: 60
+
+    - name: Print Jenkins initial admin password
+      command: cat /var/lib/jenkins/secrets/initialAdminPassword
+      register: jenkins_admin_password
+
+    - name: Print Jenkins initial admin password
+      debug:
+        msg: "Jenkins initial admin password: {{ jenkins_admin_password.stdout }}"
