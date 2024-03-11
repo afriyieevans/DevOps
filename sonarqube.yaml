@@ -1,0 +1,58 @@
+---
+- name: Install sonarqube
+  hosts: sonarqube
+  become: true
+
+  tasks:
+    - name: Copying docker compose file 
+      ansible.builtin.copy:
+        src: /home/ec2-user/docker-compose.yaml
+        dest: /home/ec2-user/
+        
+    - name: Install the latest version of docker 
+      ansible.builtin.dnf:
+        name: docker 
+        state: latest 
+
+    - name: Start service docker, if not started
+      ansible.builtin.service:
+        name: docker
+        state: started
+
+    - name: Enable service docker, if not enabled
+      ansible.builtin.service:
+        name: docker
+        enabled: yes
+
+    - name: Create a directory if it does not exist
+      ansible.builtin.file:
+        path: ~/.docker/cli-plugins/
+        state: directory
+        mode: '0755'
+
+    - name: Download docker compose 
+      ansible.builtin.get_url:
+        url: https://github.com/docker/compose/releases/download/v2.24.5/docker-compose-linux-x86_64
+        dest: ~/.docker/cli-plugins/docker-compose
+        mode: '0550'
+
+    - name: Check docker compose version
+      shell: docker compose version
+      register: command_output
+    - debug:
+          var: command_output.stdout_lines
+
+    - name: Editing a file sysctl.conf
+      ansible.builtin.lineinfile:
+        path: /etc/sysctl.conf
+        line: vm.max_map_count=262144
+        create: yes
+
+    - name: Execute sysctl command
+      ansible.builtin.shell: sysctl -p
+
+    - name: Execute docker compose command 
+      ansible.builtin.shell:   docker compose up -d
+      register: command_output
+    - debug:
+          var: command_output.stdout_lines
